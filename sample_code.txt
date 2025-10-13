@@ -1,0 +1,6 @@
+Set Number aNumber as 10,0.
+If aNumber = 10 do: {
+	Set Number counter as 1.
+	While counter > 10 do:
+		Set counter as counter - 1.
+}

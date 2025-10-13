@@ -1,0 +1,11 @@
+sctg\sudocodetranspiler\Utility\FetchFileString.class
+sctg\sudocodetranspiler\Lexer\Token.class
+sctg\sudocodetranspiler\Parser\Parser.class
+sctg\sudocodetranspiler\SudoCodeTranspiler.class
+sctg\sudocodetranspiler\Lexer\TokenType.class
+sctg\sudocodetranspiler\Lexer\LexicalAnalyzer.class
+sctg\sudocodetranspiler\Parser\CustomParser$1.class
+sctg\sudocodetranspiler\Utility\FileManager.class
+sctg\sudocodetranspiler\Parser\Parser$1.class
+sctg\sudocodetranspiler\Utility\RunJava.class
+sctg\sudocodetranspiler\Parser\CustomParser.class
