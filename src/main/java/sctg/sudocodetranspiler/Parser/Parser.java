@@ -124,7 +124,7 @@ public class Parser {
                 String prompt = "\"" + promptToken.getValue() + "\"";
                 expect(TokenType.PERIOD);
                 return type + " " + id.getValue() + ";\n" +
-                       "        " + id.getValue() + " = inferredInput(\"" + id.getValue() + "\", " + prompt + ");\n";
+                       "        " + id.getValue() + " = inferredInput( " + id.getValue()+ ", " + prompt + ");\n";
             }
             String expr = parseExpression();
             expect(TokenType.PERIOD);
@@ -143,7 +143,7 @@ public class Parser {
                     if (!variableTypes.containsKey(id.getValue())) {
                         throw new RuntimeException("Variable " + id.getValue() + " not declared before input at " + id.getLine() + ":" + id.getColumn());
                     }
-                    return id.getValue() + " = inferredInput(\"" + id.getValue() + "\", " + prompt + ");\n";
+                    return id.getValue() + " = inferredInput( " + id.getValue() + ", " + prompt + ");\n";
                 }
                 String expr = parseExpression();
                 expect(TokenType.PERIOD);
