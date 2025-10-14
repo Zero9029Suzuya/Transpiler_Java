@@ -301,7 +301,6 @@ public class LexicalAnalyzer {
                     text = input.substring(position + 1, index);
                     position = index;
                     col += index - position;
-                    System.out.println("LAST: " + input.charAt(position));
                     return TokenType.STRING_LITERAL;
                 }
             }

@@ -1,18 +1,11 @@
-set number a as 140.
-set number b as 20.
-set sentence wordle as "Hello World".
-set number d as 1.
+set number choice as 0.
 
-Process addingNumber gives a number using number x, number y by doing: {
-	set number c as x + y.
-	print(c).
-	gives c.
+Process Calculator gives a number using number choice by doing: {
+	set number b as 0.
+	Print "Choices: \n1. Add\n2.Subtract".
+	set choice as input from "Please Set Your Choice: ".
+	gives b.
 }
-
-Set i to 0 then add 1 until i <= 10 while doing: {
-	print(wordle).
-}
-
-Using addingNumber with a, b.
-
-print "Hello World", b.
+set number result as 0.
+set result as input from Using Calculator with choice.
+print result.

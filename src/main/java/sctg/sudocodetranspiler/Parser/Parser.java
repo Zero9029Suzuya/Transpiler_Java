@@ -110,14 +110,18 @@ public class Parser {
 
     private String parseSet() {
         Token next = current();
+        
+           // Variable Declaration
         if (next.getType() == TokenType.NUMBER || next.getType() == TokenType.DECIMAL ||
             next.getType() == TokenType.SENTENCE || next.getType() == TokenType.BOOLEAN) {
-            // Declaration
+            
             String type = mapType(next.getValue());
             advance();
             Token id = expect(TokenType.IDENTIFIER);
             variableTypes.put(id.getValue(), type); // Store variable type
             expect(TokenType.AS);
+            
+            // Declaration and Initialization from USER input.
             if (current().getType() == TokenType.INPUT_FROM) {
                 advance();
                 Token promptToken = expect(TokenType.STRING_LITERAL);
@@ -126,9 +130,12 @@ public class Parser {
                 return type + " " + id.getValue() + ";\n" +
                        "        " + id.getValue() + " = inferredInput( " + id.getValue()+ ", " + prompt + ");\n";
             }
+            
             String expr = parseExpression();
             expect(TokenType.PERIOD);
             return type + " " + id.getValue() + " = " + expr + ";\n";
+            
+            // Assignment
         } else if (next.getType() == TokenType.IDENTIFIER) {
             Token id = expect(TokenType.IDENTIFIER); // Use expect to advance
             Token look = current();
@@ -137,13 +144,22 @@ public class Parser {
                 advance();
                 if (current().getType() == TokenType.INPUT_FROM) {
                     advance();
-                    Token promptToken = expect(TokenType.STRING_LITERAL);
-                    String prompt = "\"" + promptToken.getValue() + "\"";
-                    expect(TokenType.PERIOD);
-                    if (!variableTypes.containsKey(id.getValue())) {
-                        throw new RuntimeException("Variable " + id.getValue() + " not declared before input at " + id.getLine() + ":" + id.getColumn());
+                    if (current().getType() == TokenType.STRING_LITERAL){
+                        Token promptToken = expect(TokenType.STRING_LITERAL);
+                        String prompt = "\"" + promptToken.getValue() + "\"";
+                        expect(TokenType.PERIOD);
+                        if (!variableTypes.containsKey(id.getValue())) {
+                            throw new RuntimeException("Variable " + id.getValue() + " not declared before input at " + id.getLine() + ":" + id.getColumn());
+                        }
+                        return id.getValue() + " = inferredInput( " + id.getValue() + ", " + prompt + ");\n";
+                    } else if (current().getType() == TokenType.USING){
+                        advance();
+                        
+                        String call = parseFunctionCall();
+                        expect(TokenType.PERIOD);
+                        return id.getValue() + " = " + call + ";\n";
                     }
-                    return id.getValue() + " = inferredInput( " + id.getValue() + ", " + prompt + ");\n";
+                    
                 }
                 String expr = parseExpression();
                 expect(TokenType.PERIOD);
@@ -426,7 +442,8 @@ public class Parser {
             expect(TokenType.RPAREN);
             return "(" + expr + ")";
         } else {
-            throw new RuntimeException("Unexpected token in expression: " + t.getType() + " " + t.getValue());
+            throw new RuntimeException("Unexpected token in expression: " + t.getType() + " " + t.getValue() + " at " + 
+                    t.getRow() + ":" + t.getColumn());
         }
     }
 
@@ -452,7 +469,8 @@ public class Parser {
 
     private String generateInferredInputMethods() {
         return """
-            public static String inferredInputString(String identifierName, String inputPrompt) {
+            
+            public static String inferredInput(String identifierName, String inputPrompt) {
                     Scanner scanner = new Scanner(System.in);
                     try {
                         System.out.print(inputPrompt);
@@ -465,7 +483,7 @@ public class Parser {
                     }
                 }
 
-                public static int inferredInputInt(int identifierName, String inputPrompt) {
+                public static int inferredInput(int identifierName, String inputPrompt) {
                     Scanner scanner = new Scanner(System.in);
                     try {
                         System.out.print(inputPrompt);
@@ -473,13 +491,13 @@ public class Parser {
                     } catch (java.util.InputMismatchException e) {
                         System.out.println("Error: Please enter a valid integer.");
                         scanner.nextLine(); // Clear invalid input
-                        return inferredInputInt(identifierName, inputPrompt);
+                        return inferredInput(identifierName, inputPrompt);
                     } finally {
                         scanner.close();
                     }
                 }
 
-                public static float inferredInputFloat(float ignored, String inputPrompt) {
+                public static float inferredInput(float ignored, String inputPrompt) {
                     Scanner scanner = new Scanner(System.in);
                     try {
                         System.out.print(inputPrompt);
@@ -487,13 +505,13 @@ public class Parser {
                     } catch (java.util.InputMismatchException e) {
                         System.out.println("Error: Please enter a valid float.");
                         scanner.nextLine(); // Clear invalid input
-                        return inferredInputFloat(ignored, inputPrompt);
+                        return inferredInput(ignored, inputPrompt);
                     } finally {
                         scanner.close();
                     }
                 }
 
-                public static boolean inferredInputBoolean(boolean ignored, String inputPrompt) {
+                public static boolean inferredInput(boolean ignored, String inputPrompt) {
                     Scanner scanner = new Scanner(System.in);
                     try {
                         System.out.print(inputPrompt);
@@ -501,7 +519,7 @@ public class Parser {
                     } catch (java.util.InputMismatchException e) {
                         System.out.println("Error: Please enter 'true' or 'false'.");
                         scanner.nextLine(); // Clear invalid input
-                        return inferredInputBoolean(ignored, inputPrompt);
+                        return inferredInput(ignored, inputPrompt);
                     } finally {
                         scanner.close();
                     }

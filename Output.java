@@ -1,12 +1,14 @@
 import java.util.Scanner;
 
 public class Output {
-    public static int addingNumber(int x, int y) {
-        int c = x + y;
-        System.out.println((c));
-        return c;
+    public static int Calculator(int choice) {
+        int b = 0;
+        System.out.println("Choices: \n1. Add\n2.Subtract");
+        choice = inferredInput( choice, "Please Set Your Choice: ");
+        return b;
     }
-    public static String inferredInputString(String identifierName, String inputPrompt) {
+
+    public static String inferredInput(String identifierName, String inputPrompt) {
             Scanner scanner = new Scanner(System.in);
             try {
                 System.out.print(inputPrompt);
@@ -19,7 +21,7 @@ public class Output {
             }
         }
 
-        public static int inferredInputInt(String identifierName, String inputPrompt) {
+        public static int inferredInput(int identifierName, String inputPrompt) {
             Scanner scanner = new Scanner(System.in);
             try {
                 System.out.print(inputPrompt);
@@ -27,13 +29,13 @@ public class Output {
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Error: Please enter a valid integer.");
                 scanner.nextLine(); // Clear invalid input
-                return inferredInputInt(identifierName, inputPrompt);
+                return inferredInput(identifierName, inputPrompt);
             } finally {
                 scanner.close();
             }
         }
 
-        public static float inferredInputFloat(float ignored, String inputPrompt) {
+        public static float inferredInput(float ignored, String inputPrompt) {
             Scanner scanner = new Scanner(System.in);
             try {
                 System.out.print(inputPrompt);
@@ -41,13 +43,13 @@ public class Output {
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Error: Please enter a valid float.");
                 scanner.nextLine(); // Clear invalid input
-                return inferredInputFloat(ignored, inputPrompt);
+                return inferredInput(ignored, inputPrompt);
             } finally {
                 scanner.close();
             }
         }
 
-        public static boolean inferredInputBoolean(boolean ignored, String inputPrompt) {
+        public static boolean inferredInput(boolean ignored, String inputPrompt) {
             Scanner scanner = new Scanner(System.in);
             try {
                 System.out.print(inputPrompt);
@@ -55,30 +57,16 @@ public class Output {
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Error: Please enter 'true' or 'false'.");
                 scanner.nextLine(); // Clear invalid input
-                return inferredInputBoolean(ignored, inputPrompt);
+                return inferredInput(ignored, inputPrompt);
             } finally {
                 scanner.close();
             }
         }
 
-        public static Object inferredInput(String identifierName, String inputPrompt, String type) {
-            return switch (type) {
-                case "int" -> inferredInputInt(identifierName, inputPrompt);
-                case "float" -> inferredInputFloat(0f, inputPrompt);
-                case "boolean" -> inferredInputBoolean(false, inputPrompt);
-                case "String" -> inferredInputString(identifierName, inputPrompt);
-                default -> throw new RuntimeException("Unknown type for input: " + type);
-            };
-        }
     public static void main(String[] args) {
-        int a = 140;
-        int b = 20;
-        String wordle = "Hello World";
-        int d = 1;
-        for (int i = 0; i <= 10; i+= 1) {
-    System.out.println((wordle));
-}
-        addingNumber(a, b);
-        System.out.println("Hello World" + " " + b);
+        int choice = 0;
+        int result = 0;
+        result = Calculator(choice);
+        System.out.println(result);
     }
 }
