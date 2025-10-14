@@ -1,11 +1,7 @@
 import java.util.Scanner;
 
 public class Output {
-<<<<<<< HEAD
     public static int addingNumber(int x, int y) {
-=======
-    public static int addingNumbers(int x, int y) {
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
         int c = x + y;
         System.out.println(c);
         return c;
@@ -75,7 +71,6 @@ public class Output {
             };
         }
     public static void main(String[] args) {
-<<<<<<< HEAD
         int a = 140;
         int b = 20;
         String wordle = "Hello Worl";
@@ -84,10 +79,5 @@ public class Output {
     System.out.println(wordle);
 }
         addingNumber(a, b);
-=======
-        int a = 10;
-        int b = 20;
-        addingNumbers(a, b);
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
     }
 }

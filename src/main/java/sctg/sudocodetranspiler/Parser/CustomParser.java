@@ -87,7 +87,7 @@ public class CustomParser {
     private String parseSet() {
         Token next = current();
         if (next.getType() == TokenType.NUMBER || next.getType() == TokenType.DECIMAL ||
-            next.getType() == TokenType.WORDS || next.getType() == TokenType.BOOLEAN) {
+            next.getType() == TokenType.SENTENCE || next.getType() == TokenType.BOOLEAN) {
             // Declarationq
             String type = mapType(next.getValue());
             advance();
@@ -385,7 +385,7 @@ public class CustomParser {
         return switch (sucoType.toLowerCase()) {
             case "number" -> "int";
             case "decimal" -> "float";
-            case "words" -> "String";
+            case "sentence" -> "String";
             case "boolean" -> "boolean";
             default -> throw new RuntimeException("Unknown data type: " + sucoType);
         };
@@ -394,7 +394,7 @@ public class CustomParser {
     private Token expectDatatype() {
         Token t = current();
         if (t.getType() == TokenType.NUMBER || t.getType() == TokenType.DECIMAL ||
-            t.getType() == TokenType.WORDS || t.getType() == TokenType.BOOLEAN) {
+            t.getType() == TokenType.SENTENCE || t.getType() == TokenType.BOOLEAN) {
             advance();
             return t;
         }

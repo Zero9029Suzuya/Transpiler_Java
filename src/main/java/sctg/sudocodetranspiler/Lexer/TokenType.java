@@ -2,7 +2,7 @@ package sctg.sudocodetranspiler.Lexer;
 
 public enum TokenType {
     // Keywords
-    SET, AS, PROCESS, GIVES, USING,
+    SET, AS, PROCESS, GIVES, GIVES_A, USING,
     TO, UNTIL, WHILE, WHILE_DOING, BY_DOING,
     FIND, IS, SKIP, HALT, THEN, DO, WITH, INPUT_FROM, PRINT, BY, NOTE,
     
@@ -10,7 +10,7 @@ public enum TokenType {
     IF, ELSE_IF, ELSE, 
     
     //Data Types
-    NUMBER, DECIMAL, WORDS, BOOLEAN,
+    NUMBER, DECIMAL, SENTENCE, BOOLEAN,
 
     // Operators
     PLUS, MINUS, MULTIPLY, DIVIDE,

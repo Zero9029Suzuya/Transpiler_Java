@@ -111,7 +111,7 @@ public class Parser {
     private String parseSet() {
         Token next = current();
         if (next.getType() == TokenType.NUMBER || next.getType() == TokenType.DECIMAL ||
-            next.getType() == TokenType.WORDS || next.getType() == TokenType.BOOLEAN) {
+            next.getType() == TokenType.SENTENCE || next.getType() == TokenType.BOOLEAN) {
             // Declaration
             String type = mapType(next.getValue());
             advance();
@@ -213,7 +213,7 @@ public class Parser {
     private String parseFunctionDef() {
         advance(); // Consume PROCESS token
         Token name = expect(TokenType.IDENTIFIER);
-        expect(TokenType.GIVES);
+        expect(TokenType.GIVES_A);
         Token retType = expectDatatype();
         String javaRet = mapType(retType.getValue());
         expect(TokenType.USING);
@@ -433,7 +433,7 @@ public class Parser {
         return switch (sucoType.toLowerCase()) {
             case "number" -> "int";
             case "decimal" -> "float";
-            case "words" -> "String";
+            case "sentence" -> "String";
             case "boolean" -> "boolean";
             default -> throw new RuntimeException("Unknown data type: " + sucoType);
         };
@@ -442,7 +442,7 @@ public class Parser {
     private Token expectDatatype() {
         Token t = current();
         if (t.getType() == TokenType.NUMBER || t.getType() == TokenType.DECIMAL ||
-            t.getType() == TokenType.WORDS || t.getType() == TokenType.BOOLEAN) {
+            t.getType() == TokenType.SENTENCE || t.getType() == TokenType.BOOLEAN) {
             advance();
             return t;
         }

@@ -44,6 +44,7 @@ public class LexicalAnalyzer {
             
             // Place Symbol Handler Here.
             if ("+-*/=<>!:(){},\"".indexOf(current) != -1) {
+                handleSymbols();
                 continue;
             }
             
@@ -87,7 +88,7 @@ public class LexicalAnalyzer {
             case "then" -> type = TokenType.THEN;
             case "number" -> type = TokenType.NUMBER;
             case "decimal" -> type = TokenType.DECIMAL;
-            case "words" -> type = TokenType.WORDS;
+            case "sentence" -> type = TokenType.SENTENCE;
             case "boolean" -> type = TokenType.BOOLEAN;
             case "process" -> type = TokenType.PROCESS;
             case "using" -> type = TokenType.USING;
@@ -96,7 +97,6 @@ public class LexicalAnalyzer {
             case "if" -> type = TokenType.IF;
             case "do" -> type = TokenType.DO;
             case "is" -> type = TokenType.IS;
-            case "gives" -> type = TokenType.GIVES;
             case "halt" -> type = TokenType.HALT;
             case "skip" -> type = TokenType.SKIP;
             case "with" -> type = TokenType.WITH;
@@ -109,6 +109,15 @@ public class LexicalAnalyzer {
             case "dividing" -> type = TokenType.DIVIDING;
             case "to" -> type = TokenType.TO;
             case "until" -> type = TokenType.UNTIL;
+            case "gives" -> {
+                if (lookAhead().equalsIgnoreCase("a")){
+                    lookAhead(true);
+                    type = TokenType.GIVES_A;
+                } else {
+                    type = TokenType.GIVES;
+                }
+            }
+            
             case "input" -> {
                 if (lookAhead().equalsIgnoreCase("from")){
                     lookAhead(true);
