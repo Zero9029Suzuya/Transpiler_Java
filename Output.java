@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Output {
     public static int addingNumber(int x, int y) {
         int c = x + y;
-        System.out.println(c);
+        System.out.println((c));
         return c;
     }
     public static String inferredInputString(String identifierName, String inputPrompt) {
@@ -73,11 +73,12 @@ public class Output {
     public static void main(String[] args) {
         int a = 140;
         int b = 20;
-        String wordle = "Hello Worl";
+        String wordle = "Hello World";
         int d = 1;
         for (int i = 0; i <= 10; i+= 1) {
-    System.out.println(wordle);
+    System.out.println((wordle));
 }
         addingNumber(a, b);
+        System.out.println("Hello World" + " " + b);
     }
 }

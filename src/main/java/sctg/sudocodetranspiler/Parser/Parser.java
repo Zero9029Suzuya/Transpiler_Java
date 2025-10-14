@@ -326,15 +326,13 @@ public class Parser {
 
     private String parsePrint() {
         StringBuilder sb = new StringBuilder("System.out.println(");
-        expect(TokenType.LPAREN);
         do {
             sb.append(parseExpression());
             if (!match(TokenType.COMMA)) {
                 break;
             }
-            sb.append(" + ");
+            sb.append(" + \" \" + ");
         } while (true);
-        expect(TokenType.RPAREN);
         expect(TokenType.PERIOD);
         sb.append(");\n");
         return sb.toString();
