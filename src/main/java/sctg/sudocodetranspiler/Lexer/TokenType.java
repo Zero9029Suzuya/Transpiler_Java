@@ -13,7 +13,7 @@ public enum TokenType {
     NUMBER, DECIMAL, SENTENCE, BOOLEAN,
 
     // Operators
-    PLUS, MINUS, MULTIPLY, DIVIDE,
+    PLUS, MINUS, MULTIPLY, DIVIDE, MODULO,
     ASSIGN, GT, LT, GE, LE, EQ, NE,
     INCREMENT, DECREMENT,
     

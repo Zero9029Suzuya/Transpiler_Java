@@ -43,7 +43,7 @@ public class LexicalAnalyzer {
             }
             
             // Place Symbol Handler Here.
-            if ("+-*/=<>!:(){},\"".indexOf(current) != -1) {
+            if ("+-*/=<>!:(){},\"%".indexOf(current) != -1) {
                 handleSymbols();
                 continue;
             }
@@ -220,6 +220,7 @@ public class LexicalAnalyzer {
             case '{' -> type = TokenType.LBRACE;
             case '}' -> type = TokenType.RBRACE;
             case ',' -> type = TokenType.COMMA;
+            case '%' -> type = TokenType.MODULO;
             case '!' -> {
                 switch(next) {
                     case '=' -> type = TokenType.NE;
@@ -297,7 +298,7 @@ public class LexicalAnalyzer {
                     index++;
                     continue;
                 } else {
-                    text = input.substring(position + 1, index - 1);
+                    text = input.substring(position + 1, index);
                     position = index;
                     col += index - position;
                     System.out.println("LAST: " + input.charAt(position));

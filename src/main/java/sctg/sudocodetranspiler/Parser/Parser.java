@@ -385,6 +385,9 @@ public class Parser {
                 left += " * " + parseUnary();
             } else if (match(TokenType.DIVIDE)) {
                 left += " / " + parseUnary();
+            } else if (match(TokenType.MODULO)) {
+                left += " % " + parseUnary();
+                break;
             } else {
                 break;
             }
