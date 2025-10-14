@@ -43,7 +43,7 @@ public class LexicalAnalyzer {
             }
             
             // Place Symbol Handler Here.
-            if ("+-*/=<>!:(){},".indexOf(current) != -1) {
+            if ("+-*/=<>!:(){},\"".indexOf(current) != -1) {
                 handleSymbols();
                 continue;
             }
@@ -108,6 +108,8 @@ public class LexicalAnalyzer {
             case "subtracting" -> type = TokenType.SUBTRACTING;
             case "multiplying" -> type = TokenType.MULTIPLYING;
             case "dividing" -> type = TokenType.DIVIDING;
+            case "to" -> type = TokenType.TO;
+            case "until" -> type = TokenType.UNTIL;
             case "input" -> {
                 if (lookAhead().equalsIgnoreCase("from")){
                     lookAhead(true);
@@ -272,31 +274,35 @@ public class LexicalAnalyzer {
         String nextWord = input.substring(start, index);
         if (consume){
             position = index;
-            col += (index - start);
             text = text + " " + nextWord;
         }
         return nextWord;
     }
     
     private TokenType handleStringLiteral(){
-        int index = position + 1;
+        int index = position;
         
-        while (index < input.length() && Character.isLetterOrDigit(input.charAt(index))){
+        while (index < input.length()){
+            index++;
             if (input.charAt(index) == '"'){
-                if (input.charAt(index - 1) == '\\'){
+                if(input.charAt(index - 1) == '\\'){
                     index++;
                     continue;
                 } else {
-                    position += index - position;
-                    text = input.substring(position, index);
+                    text = input.substring(position + 1, index - 1);
+                    position = index;
+                    col += index - position;
+                    System.out.println("LAST: " + input.charAt(position));
                     return TokenType.STRING_LITERAL;
                 }
             }
-            index++;
         }
+        
         throw new RuntimeException("Missing Closer '\"' at: " + row + ":" + col);
     }
 }
+
+
 
 
 

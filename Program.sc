@@ -1,10 +1,16 @@
-set number a as 10.
+set number a as 140.
 set number b as 20.
+set words wordle as "Hello World".
+set number d as 1.
 
-Process addingNumbers gives number using number x, number y by doing: {
+Process addingNumber gives number using number x, number y by doing: {
 	set number c as x + y.
-	print (c).
+	print(c).
 	gives c.
 }
 
-Using addingNumbers with a, b.
+Set i to 0 then add 1 until i <= 10 while doing: {
+	print(wordle).
+}
+
+Using addingNumber with a, b.
