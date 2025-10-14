@@ -506,16 +506,6 @@ public class Parser {
                         scanner.close();
                     }
                 }
-
-                public static Object inferredInput(String identifierName, String inputPrompt, String type) {
-                    return switch (type) {
-                        case "int" -> inferredInputInt(identifierName, inputPrompt);
-                        case "float" -> inferredInputFloat(0f, inputPrompt);
-                        case "boolean" -> inferredInputBoolean(false, inputPrompt);
-                        case "String" -> inferredInputString(identifierName, inputPrompt);
-                        default -> throw new RuntimeException("Unknown type for input: " + type);
-                    };
-                }
         """;
     }
 
