@@ -465,7 +465,7 @@ public class Parser {
                     }
                 }
 
-                public static int inferredInputInt(String identifierName, String inputPrompt) {
+                public static int inferredInputInt(int identifierName, String inputPrompt) {
                     Scanner scanner = new Scanner(System.in);
                     try {
                         System.out.print(inputPrompt);
@@ -506,6 +506,7 @@ public class Parser {
                         scanner.close();
                     }
                 }
+
         """;
     }
 
