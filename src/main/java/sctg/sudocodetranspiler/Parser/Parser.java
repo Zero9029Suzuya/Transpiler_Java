@@ -158,11 +158,8 @@ public class Parser {
                     case SUBTRACTING -> op = "-=";
                     case MULTIPLYING -> op = "*=";
                     case DIVIDING -> op = "/=";
-<<<<<<< HEAD
                     default -> throw new RuntimeException("Expected assignment operator (Adding, Subtracting, Multiplying, Dividing) but got: " + opToken + " at " + opToken.getRow() + ":" + opToken.getColumn() );
-=======
-                    default -> throw new RuntimeException("Expected assignment operator (Adding, Subtracting, Multiplying, Dividing) but got: " + opToken);
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
+
                 }
                 advance();
                 String expr = parseExpression();
@@ -449,11 +446,7 @@ public class Parser {
             advance();
             return t;
         }
-<<<<<<< HEAD
         throw new RuntimeException("Expected data type but got: " + t.getType() + "at" + t.getRow() + ":" + t.getColumn());
-=======
-        throw new RuntimeException("Expected data type but got: " + t.getType());
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
     }
 
     private String generateInferredInputMethods() {
@@ -550,11 +543,7 @@ public class Parser {
             advance();
             return t;
         }
-<<<<<<< HEAD
         throw new RuntimeException("Expected: " + type + " but got, " + current().getType() + " at " + current().getRow() + ":" + current().getColumn());
-=======
-        throw new RuntimeException("Expected: " + type + " but got, " + current().getType());
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
     }
 
     private boolean isEOF() {

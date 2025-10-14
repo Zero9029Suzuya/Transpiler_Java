@@ -43,12 +43,7 @@ public class LexicalAnalyzer {
             }
             
             // Place Symbol Handler Here.
-<<<<<<< HEAD
             if ("+-*/=<>!:(){},\"".indexOf(current) != -1) {
-=======
-            if ("+-*/=<>!:(){},".indexOf(current) != -1) {
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
-                handleSymbols();
                 continue;
             }
             
@@ -112,11 +107,8 @@ public class LexicalAnalyzer {
             case "subtracting" -> type = TokenType.SUBTRACTING;
             case "multiplying" -> type = TokenType.MULTIPLYING;
             case "dividing" -> type = TokenType.DIVIDING;
-<<<<<<< HEAD
             case "to" -> type = TokenType.TO;
             case "until" -> type = TokenType.UNTIL;
-=======
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
             case "input" -> {
                 if (lookAhead().equalsIgnoreCase("from")){
                     lookAhead(true);
@@ -281,17 +273,12 @@ public class LexicalAnalyzer {
         String nextWord = input.substring(start, index);
         if (consume){
             position = index;
-<<<<<<< HEAD
-=======
-            col += (index - start);
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
             text = text + " " + nextWord;
         }
         return nextWord;
     }
     
     private TokenType handleStringLiteral(){
-<<<<<<< HEAD
         int index = position;
         
         while (index < input.length()){
@@ -309,32 +296,6 @@ public class LexicalAnalyzer {
                 }
             }
         }
-        
-=======
-        int index = position + 1;
-        
-        while (index < input.length() && Character.isLetterOrDigit(input.charAt(index))){
-            if (input.charAt(index) == '"'){
-                if (input.charAt(index - 1) == '\\'){
-                    index++;
-                    continue;
-                } else {
-                    position += index - position;
-                    text = input.substring(position, index);
-                    return TokenType.STRING_LITERAL;
-                }
-            }
-            index++;
-        }
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
         throw new RuntimeException("Missing Closer '\"' at: " + row + ":" + col);
     }
 }
-
-
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 7c44e15a6fbc1ce224cca797734434289b648b8f
