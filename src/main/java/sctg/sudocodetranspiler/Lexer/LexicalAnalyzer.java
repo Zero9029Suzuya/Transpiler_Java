@@ -94,7 +94,7 @@ public class LexicalAnalyzer {
             case "using" -> type = TokenType.USING;
             case "true" -> type = TokenType.BOOLEAN_LITERAL;
             case "false" -> type = TokenType.BOOLEAN_LITERAL;
-            case "if" -> type = TokenType.IF;
+            
             case "do" -> type = TokenType.DO;
             case "is" -> type = TokenType.IS;
             case "halt" -> type = TokenType.HALT;
@@ -109,6 +109,9 @@ public class LexicalAnalyzer {
             case "dividing" -> type = TokenType.DIVIDING;
             case "to" -> type = TokenType.TO;
             case "until" -> type = TokenType.UNTIL;
+            case "find" -> type = TokenType.FIND;
+            case "if" -> type = TokenType.IF;
+            case "absent" -> type = TokenType.ABSENT;
             case "gives" -> {
                 if (lookAhead().equalsIgnoreCase("a")){
                     lookAhead(true);

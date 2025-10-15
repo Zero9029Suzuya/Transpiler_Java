@@ -4,7 +4,7 @@ public enum TokenType {
     // Keywords
     SET, AS, PROCESS, GIVES, GIVES_A, USING,
     TO, UNTIL, WHILE, WHILE_DOING, BY_DOING,
-    FIND, IS, SKIP, HALT, THEN, DO, WITH, INPUT_FROM, PRINT, BY, NOTE,
+    FIND, IS, SKIP, HALT, THEN, DO, WITH, INPUT_FROM, PRINT, BY, NOTE, ABSENT,
     
     //Conditioals
     IF, ELSE_IF, ELSE, 

@@ -322,19 +322,42 @@ public class Parser {
         expect(TokenType.DO);
         expect(TokenType.COLON);
         expect(TokenType.LBRACE);
+        
+        //BUILD
         StringBuilder sb = new StringBuilder("switch (" + var.getValue() + ") {\n");
+        
         while (!match(TokenType.RBRACE)) {
-            expect(TokenType.IS);
-            String cond = parseExpression();
-            expect(TokenType.COLON);
-            expect(TokenType.LBRACE);
-            StringBuilder caseBody = new StringBuilder();
-            while (!match(TokenType.RBRACE)) {
-                caseBody.append("        ").append(parseStatement());
+            if(current().getType() == TokenType.IS){
+                advance();
+                String cond = parseExpression();
+                expect(TokenType.COLON);
+                expect(TokenType.LBRACE);
+                StringBuilder caseBody = new StringBuilder();
+                while (!match(TokenType.RBRACE)) {
+                    caseBody.append("        ").append(parseStatement());
+                }
+                sb.append("    case ").append(cond).append(" -> {\n")
+                    .append(caseBody)
+                    .append("    }\n");
+            } 
+            if (current().getType() == TokenType.ABSENT){
+                advance();
+                expect(TokenType.COLON);
+                expect(TokenType.LBRACE);
+                StringBuilder defaultBody = new StringBuilder();
+                while(!match(TokenType.RBRACE)) {
+                    defaultBody.append("        ").append(parseStatement());
+                }
+                sb.append("    default -> {\n")
+                    .append(defaultBody)
+                    .append("    {\n");
+            } else {
+                throw new RuntimeException("Expecting Absent case for condition of :" + var.getValue() + 
+                        " at " + var.getRow() + ":" + var.getColumn());
             }
-            sb.append("    case ").append(cond).append(" -> {\n")
-              .append(caseBody)
-              .append("    }\n");
+            
+            
+                
         }
         sb.append("}\n");
         return sb.toString();
