@@ -1,75 +1,115 @@
 import java.util.Scanner;
 
 public class Output {
+    public static float plus(float a, float b) {
+        float total = a + b;
+        return total;
+    }
+
+    public static float minus(float a, float b) {
+        float total = a - b;
+        return total;
+    }
+
+    public static float multi(float a, float b) {
+        float total = a * b;
+        return total;
+    }
+
+    public static float divide(float a, float b) {
+        float total = a / b;
+        return total;
+    }
+    public static final Scanner SCANNER_INPUT = new Scanner(System.in);
 
     public static String inferredInput(String identifierName, String inputPrompt) {
-            Scanner scanner = new Scanner(System.in);
             try {
                 System.out.print(inputPrompt + " ");
-                return scanner.nextLine();
+                String input = SCANNER_INPUT.nextLine();
+                return input;
             } catch (Exception e) {
                 System.out.println("Error reading String input: " + e.getMessage());
                 return null;
-            } finally {
-                scanner.close();
             }
         }
 
         public static int inferredInput(int identifierName, String inputPrompt) {
-            Scanner scanner = new Scanner(System.in);
             try {
                 System.out.print(inputPrompt + " ");
-                return scanner.nextInt();
+                int input = SCANNER_INPUT.nextInt();
+                SCANNER_INPUT.nextLine();
+                return input;
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Error: Please enter a valid integer.");
-                scanner.nextLine(); // Clear invalid input
+                SCANNER_INPUT.nextLine();
                 return inferredInput(identifierName, inputPrompt);
-            } finally {
-                scanner.close();
             }
         }
 
         public static float inferredInput(float ignored, String inputPrompt) {
-            Scanner scanner = new Scanner(System.in);
             try {
                 System.out.print(inputPrompt + " ");
-                return scanner.nextFloat();
+                float input =  SCANNER_INPUT.nextFloat();
+                SCANNER_INPUT.nextLine();
+                return input;
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Error: Please enter a valid float.");
-                scanner.nextLine(); // Clear invalid input
+                SCANNER_INPUT.nextLine();
                 return inferredInput(ignored, inputPrompt);
-            } finally {
-                scanner.close();
             }
         }
 
         public static boolean inferredInput(boolean ignored, String inputPrompt) {
-            Scanner scanner = new Scanner(System.in);
             try {
                 System.out.print(inputPrompt + " ");
-                return scanner.nextBoolean();
+                boolean input = SCANNER_INPUT.nextBoolean();
+                SCANNER_INPUT.nextLine();
+                return input;
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Error: Please enter 'true' or 'false'.");
-                scanner.nextLine(); // Clear invalid input
+                SCANNER_INPUT.nextLine();
                 return inferredInput(ignored, inputPrompt);
-            } finally {
-                scanner.close();
             }
         }
 
     public static void main(String[] args) {
-        String a = """
- T
-Added"""
-;
-        System.out.println(a);
-        int b= 0;;
-        b = inferredInput( b, """
-Pick a choice:
-1. Addition:
-2. Subtraction:
-Choice: """
+        boolean auth = true;
+        while (auth == true) {
+    float a = 0.0f;
+        a = inferredInput( a, """
+Enter 1st Number: """
 );
-        System.out.println(b);
+    int op= 0;
+        op = inferredInput( op, """
+Enter Operator:
+1. Add
+2. Subtract	"""
+);
+    float b = 0.0f;
+        b = inferredInput( b, """
+Enter 2nd Number: """
+);
+    float result = 0;
+    switch (op) {
+    case 1 -> {
+        result = plus(a, b);
+    }
+    case 2 -> {
+        result = minus(a, b);
+    }
+    case 3 -> {
+        result = multi(a, b);
+    }
+    case 4 -> {
+        result = divide(a, b);
+    }
+    default -> {
+        System.out.println("""
+ Invalid """
+);
+    }
+}
+    System.out.println(result);
+}
     }
 }

@@ -505,59 +505,55 @@ public class Parser {
 
     private String generateInferredInputMethods() {
         return """
-            
+            public static final Scanner SCANNER_INPUT = new Scanner(System.in);
+               
             public static String inferredInput(String identifierName, String inputPrompt) {
-                    Scanner scanner = new Scanner(System.in);
                     try {
                         System.out.print(inputPrompt + " ");
-                        return scanner.nextLine();
+                        String input = SCANNER_INPUT.nextLine();
+                        return input;        
                     } catch (Exception e) {
                         System.out.println("Error reading String input: " + e.getMessage());
                         return null;
-                    } finally {
-                        scanner.close();
                     }
                 }
 
                 public static int inferredInput(int identifierName, String inputPrompt) {
-                    Scanner scanner = new Scanner(System.in);
                     try {
                         System.out.print(inputPrompt + " ");
-                        return scanner.nextInt();
+                        int input = SCANNER_INPUT.nextInt();
+                        SCANNER_INPUT.nextLine();   
+                        return input; 
                     } catch (java.util.InputMismatchException e) {
                         System.out.println("Error: Please enter a valid integer.");
-                        scanner.nextLine(); // Clear invalid input
+                        SCANNER_INPUT.nextLine();
                         return inferredInput(identifierName, inputPrompt);
-                    } finally {
-                        scanner.close();
                     }
                 }
 
                 public static float inferredInput(float ignored, String inputPrompt) {
-                    Scanner scanner = new Scanner(System.in);
                     try {
                         System.out.print(inputPrompt + " ");
-                        return scanner.nextFloat();
+                        float input =  SCANNER_INPUT.nextFloat();
+                        SCANNER_INPUT.nextLine();   
+                        return input; 
                     } catch (java.util.InputMismatchException e) {
                         System.out.println("Error: Please enter a valid float.");
-                        scanner.nextLine(); // Clear invalid input
+                        SCANNER_INPUT.nextLine();
                         return inferredInput(ignored, inputPrompt);
-                    } finally {
-                        scanner.close();
                     }
                 }
 
                 public static boolean inferredInput(boolean ignored, String inputPrompt) {
-                    Scanner scanner = new Scanner(System.in);
                     try {
                         System.out.print(inputPrompt + " ");
-                        return scanner.nextBoolean();
+                        boolean input = SCANNER_INPUT.nextBoolean();
+                        SCANNER_INPUT.nextLine();   
+                        return input; 
                     } catch (java.util.InputMismatchException e) {
                         System.out.println("Error: Please enter 'true' or 'false'.");
-                        scanner.nextLine(); // Clear invalid input
+                        SCANNER_INPUT.nextLine();
                         return inferredInput(ignored, inputPrompt);
-                    } finally {
-                        scanner.close();
                     }
                 }
 
