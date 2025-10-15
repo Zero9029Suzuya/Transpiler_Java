@@ -1,12 +1,6 @@
 import java.util.Scanner;
 
 public class Output {
-    public static int Calculator(int choice) {
-        int b = 0;
-        System.out.println("Choices: \n1. Add\n2.Subtract");
-        choice = inferredInput( choice, "Please Set Your Choice: ");
-        return b;
-    }
 
     public static String inferredInput(String identifierName, String inputPrompt) {
             Scanner scanner = new Scanner(System.in);
@@ -64,9 +58,17 @@ public class Output {
         }
 
     public static void main(String[] args) {
-        int choice = 0;
-        int result = 0;
-        result = Calculator(choice);
-        System.out.println(result);
+        int op = 10;
+        switch (op) {
+    case 5 -> {
+        System.out.println("It is 5");
+    }
+    case 10 -> {
+        System.out.println("It is 10");
+    }
+    default -> {
+        System.out.println("Not Found");
+    }
+}
     }
 }

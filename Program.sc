@@ -1,11 +1,7 @@
-set number choice as 0.
-
-Process Calculator gives a number using number choice by doing: {
-	set number b as 0.
-	Print "Choices: \n1. Add\n2.Subtract".
-	set choice as input from "Please Set Your Choice: ".
-	gives b.
+set number op as 10.
+	
+find op then do: {
+	is 5: { Print "It is 5". }
+	is 10: {Print "It is 10". }
+	absent: {Print "Not Found". }
 }
-set number result as 0.
-set result as input from Using Calculator with choice.
-print result.

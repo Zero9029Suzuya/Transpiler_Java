@@ -327,7 +327,7 @@ public class Parser {
         StringBuilder sb = new StringBuilder("switch (" + var.getValue() + ") {\n");
         
         while (!match(TokenType.RBRACE)) {
-            if(current().getType() == TokenType.IS){
+            while(current().getType() == TokenType.IS){
                 advance();
                 String cond = parseExpression();
                 expect(TokenType.COLON);
@@ -340,7 +340,10 @@ public class Parser {
                     .append(caseBody)
                     .append("    }\n");
             } 
+            System.out.println("CHECKING ABSENT : current().getType()");
+            
             if (current().getType() == TokenType.ABSENT){
+                System.out.println("IN ABSENT");
                 advance();
                 expect(TokenType.COLON);
                 expect(TokenType.LBRACE);
@@ -350,7 +353,7 @@ public class Parser {
                 }
                 sb.append("    default -> {\n")
                     .append(defaultBody)
-                    .append("    {\n");
+                    .append("    }\n");
             } else {
                 throw new RuntimeException("Expecting Absent case for condition of :" + var.getValue() + 
                         " at " + var.getRow() + ":" + var.getColumn());
