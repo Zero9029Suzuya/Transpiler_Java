@@ -297,6 +297,7 @@ public class LexicalAnalyzer {
     
     private TokenType handleStringLiteral(){
         int index = position;
+        StringBuilder sb = new StringBuilder();
         
         while (index < input.length()){
             index++;
@@ -305,16 +306,21 @@ public class LexicalAnalyzer {
                     index++;
                     continue;
                 } else {
-                    text = input.substring(position + 1, index);
+//                    text = input.substring(position + 1, index);
                     position = index;
                     col += index - position;
+                    text = sb.toString();
                     return TokenType.STRING_LITERAL;
                 }
             }
             if (input.charAt(index) == '\n'){
+                sb.append("\n");
+                System.out.println("IN");
                 row++;
                 col = 1;
+                continue;
             }
+            sb.append(input.charAt(index));
         }
         throw new RuntimeException("Missing Closer '\"' at: " + row + ":" + col);
     }
