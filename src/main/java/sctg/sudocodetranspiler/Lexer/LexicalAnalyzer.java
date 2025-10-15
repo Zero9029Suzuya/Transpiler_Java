@@ -306,7 +306,6 @@ public class LexicalAnalyzer {
                     index++;
                     continue;
                 } else {
-//                    text = input.substring(position + 1, index);
                     position = index;
                     col += index - position;
                     text = sb.toString();

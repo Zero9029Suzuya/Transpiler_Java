@@ -113,7 +113,7 @@ public class Parser {
             case "int" -> {return "= 0;";}
             case "float" -> {return " = 0.0f;";}
             case "boolean" -> {return "= false;";}
-            case "String" -> {return ";";}
+            case "String" -> {return " = \"\";";}
             default -> throw new RuntimeException("defaultValue: type not found");
         }
     }
