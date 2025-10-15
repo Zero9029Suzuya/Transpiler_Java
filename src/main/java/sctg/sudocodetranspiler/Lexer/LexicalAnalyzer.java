@@ -246,6 +246,10 @@ public class LexicalAnalyzer {
             }
             case '"' -> {
                 type = handleStringLiteral();
+                Tokens.add(new Token(type, text, row, col));
+                col++;
+                position++;
+                return;
             }
             default -> throw new RuntimeException("Unknown operator: '" + current + "' at " + row + ":" + col);
         }
@@ -306,6 +310,10 @@ public class LexicalAnalyzer {
                     col += index - position;
                     return TokenType.STRING_LITERAL;
                 }
+            }
+            if (input.charAt(index) == '\n'){
+                row++;
+                col = 1;
             }
         }
         throw new RuntimeException("Missing Closer '\"' at: " + row + ":" + col);

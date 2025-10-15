@@ -58,17 +58,6 @@ public class Output {
         }
 
     public static void main(String[] args) {
-        int op = 10;
-        switch (op) {
-    case 5 -> {
-        System.out.println("It is 5");
-    }
-    case 10 -> {
-        System.out.println("It is 10");
-    }
-    default -> {
-        System.out.println("Not Found");
-    }
-}
+        String a = "T";
     }
 }
