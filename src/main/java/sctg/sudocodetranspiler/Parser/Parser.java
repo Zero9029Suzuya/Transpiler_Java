@@ -110,10 +110,10 @@ public class Parser {
     
     private String defaultValue(String type){
         switch (type) {
-            case "int" -> {return "= 0;";}
-            case "float" -> {return " = 0.0f;";}
-            case "boolean" -> {return "= false;";}
-            case "String" -> {return " = \"\";";}
+            case "int" -> {return "= 0";}
+            case "float" -> {return " = 0.0f";}
+            case "boolean" -> {return "= false";}
+            case "String" -> {return " = \"\"";}
             default -> throw new RuntimeException("defaultValue: type not found");
         }
     }
