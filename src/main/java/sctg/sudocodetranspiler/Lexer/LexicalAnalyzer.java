@@ -115,6 +115,8 @@ public class LexicalAnalyzer {
             case "find" -> type = TokenType.FIND;
             case "if" -> type = TokenType.IF;
             case "absent" -> type = TokenType.ABSENT;
+            case "and" -> type = TokenType.AND;
+            case "or" -> type = TokenType.OR;
             case "gives" -> {
                 if (lookAhead().equalsIgnoreCase("a")){
                     lookAhead(true);

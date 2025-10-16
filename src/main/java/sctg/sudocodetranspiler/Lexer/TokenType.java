@@ -25,6 +25,9 @@ public enum TokenType {
 
     // Identifiers and literals
     IDENTIFIER, NUMBER_LITERAL, DECIMAL_LITERAL, STRING_LITERAL, BOOLEAN_LITERAL,
+    
+    //Addition
+    OR, AND,
 
     // Symbols
     COMMA, COLON, LPAREN, RPAREN, LBRACE, RBRACE, PERIOD,

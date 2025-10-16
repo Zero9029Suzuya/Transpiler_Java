@@ -54,8 +54,18 @@ public class Output {
         }
 
     public static void main(String[] args) {
-        for (int counter = 1; counter <= 10; counter+= 1) {
-    System.out.println(counter);
+        int num1 = 10;
+        int num2 = 20;
+        int num3 = 20;
+        if (num1 == 10 && num2 == 2 || num3 == 5) {
+    System.out.println("""
+GOOD"""
+);
+}
+else {
+    System.out.println("""
+BAD"""
+);
 }
     }
 }

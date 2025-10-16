@@ -391,13 +391,35 @@ public class Parser {
     }
 
     private String parseCondition() {
+        
+        System.out.println("1");
         String left = parseExpression();
+        System.out.println("2");
         String op = parseCompOp();
         if (op.isEmpty()) {
             return left;
         }
+        System.out.println("3");
         String right = parseExpression();
-        return left + " " + op + " " + right;
+        
+        if (current().getType() == TokenType.OR || 
+                current().getType() == TokenType.AND){
+           StringBuilder sbP = new StringBuilder();
+           String cop = addCondition();
+           String add = parseCondition();
+           System.out.println("OUTPUT: " + left + " " + op + " " + right + " " + cop + " " + add);
+           return left + " " + op + " " + right + " " + cop + " " + add;
+       } 
+       
+       System.out.println("OUTPUT: " + left + " : " + op + " : " + right);
+       return left + " " + op + " " + right;
+        
+    }
+    
+    private String addCondition(){
+        if (match(TokenType.OR)) return "||";
+        if (match(TokenType.AND)) return "&&";
+        return "";
     }
 
     private String parseCompOp() {
@@ -477,7 +499,7 @@ public class Parser {
             String expr = parseExpression();
             expect(TokenType.RPAREN);
             return "(" + expr + ")";
-        } else {
+        } else{
             throw new RuntimeException("Unexpected token in expression: " + t.getType() + " " + t.getValue() + " at " + 
                     t.getRow() + ":" + t.getColumn());
         }
