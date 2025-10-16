@@ -199,7 +199,7 @@ public class Parser {
                 advance();
                 String initValue = parseExpression();
                 expect(TokenType.THEN);
-                Token opToken = expect(TokenType.IDENTIFIER);
+                Token opToken = expect(TokenType.OP);
                 String opWord = opToken.getValue().toLowerCase();
                 if (opWord.equals("multiply") || opWord.equals("divide")) {
                     expect(TokenType.BY);
@@ -213,14 +213,14 @@ public class Parser {
                     case "divide" -> stepOp = "/=";
                     default -> throw new RuntimeException("Unknown operation: " + opWord);
                 }
-                expect(TokenType.UNTIL);
+                expect(TokenType.WHILE);
                 Token condId = expect(TokenType.IDENTIFIER);
                 if (!condId.getValue().equals(id.getValue())) {
                     throw new RuntimeException("Until must reference the same identifier: " + id.getValue());
                 }
                 String compOp = parseCompOp();
                 String rangeValue = parseExpression();
-                expect(TokenType.WHILE_DOING);
+                expect(TokenType.DO);
                 expect(TokenType.COLON);
                 expect(TokenType.LBRACE);
                 StringBuilder body = new StringBuilder();

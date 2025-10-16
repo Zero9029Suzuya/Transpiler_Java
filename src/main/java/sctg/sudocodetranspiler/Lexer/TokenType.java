@@ -19,6 +19,9 @@ public enum TokenType {
     
     //Asignment Operator
     ADDING, SUBTRACTING, MULTIPLYING, DIVIDING,
+    
+    //ADD, SUBTRACT, DIVIDE, MULTIPLYING
+    OP,
 
     // Identifiers and literals
     IDENTIFIER, NUMBER_LITERAL, DECIMAL_LITERAL, STRING_LITERAL, BOOLEAN_LITERAL,

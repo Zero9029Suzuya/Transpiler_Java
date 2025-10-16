@@ -94,7 +94,10 @@ public class LexicalAnalyzer {
             case "using" -> type = TokenType.USING;
             case "true" -> type = TokenType.BOOLEAN_LITERAL;
             case "false" -> type = TokenType.BOOLEAN_LITERAL;
-            
+            case "add" -> type = TokenType.OP;
+            case "subtract" -> type = TokenType.OP;
+            case "divide" -> type = TokenType.OP;
+            case "multiply" -> type = TokenType.OP;
             case "do" -> type = TokenType.DO;
             case "is" -> type = TokenType.IS;
             case "halt" -> type = TokenType.HALT;

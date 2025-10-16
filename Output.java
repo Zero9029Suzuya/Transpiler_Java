@@ -1,25 +1,6 @@
 import java.util.Scanner;
 
 public class Output {
-    public static float plus(float a, float b) {
-        float total = a + b;
-        return total;
-    }
-
-    public static float minus(float a, float b) {
-        float total = a - b;
-        return total;
-    }
-
-    public static float multi(float a, float b) {
-        float total = a * b;
-        return total;
-    }
-
-    public static float divide(float a, float b) {
-        float total = a / b;
-        return total;
-    }
     public static final Scanner SCANNER_INPUT = new Scanner(System.in);
 
     public static String inferredInput(String identifierName, String inputPrompt) {
@@ -73,43 +54,8 @@ public class Output {
         }
 
     public static void main(String[] args) {
-        boolean auth = true;
-        while (auth == true) {
-    float a = 0.0f;
-        a = inferredInput( a, """
-Enter 1st Number: """
-);
-    int op= 0;
-        op = inferredInput( op, """
-Enter Operator:
-1. Add
-2. Subtract	"""
-);
-    float b = 0.0f;
-        b = inferredInput( b, """
-Enter 2nd Number: """
-);
-    float result = 0;
-    switch (op) {
-    case 1 -> {
-        result = plus(a, b);
-    }
-    case 2 -> {
-        result = minus(a, b);
-    }
-    case 3 -> {
-        result = multi(a, b);
-    }
-    case 4 -> {
-        result = divide(a, b);
-    }
-    default -> {
-        System.out.println("""
- Invalid """
-);
-    }
-}
-    System.out.println(result);
+        for (int counter = 1; counter <= 10; counter+= 1) {
+    System.out.println(counter);
 }
     }
 }
