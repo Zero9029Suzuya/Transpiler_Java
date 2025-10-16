@@ -134,6 +134,17 @@ public class Parser {
             // Declaration and Initialization from USER input.
             if (current().getType() == TokenType.INPUT_FROM) {
                 advance();
+                
+                if (current().getType() == TokenType.USING) {
+                    advance();
+
+                    String call = parseFunctionCall();
+                    expect(TokenType.PERIOD);
+                    return type + " " + id.getValue() + defaultValue(type) + ";\n" +
+                       "        " + id.getValue() + " = " + call + ";\n";
+                    
+                }
+                
                 Token promptToken = expect(TokenType.STRING_LITERAL);
                 String prompt = "\"\"\"\n" + promptToken.getValue() + "\"\"\"\n";
                 expect(TokenType.PERIOD);

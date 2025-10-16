@@ -1,6 +1,25 @@
 import java.util.Scanner;
 
 public class Output {
+    public static float plus(float a, float b) {
+        float total = a + b;
+        return total;
+    }
+
+    public static float minus(float a, float b) {
+        float total = a - b;
+        return total;
+    }
+
+    public static float multi(float a, float b) {
+        float total = a * b;
+        return total;
+    }
+
+    public static float divi(float a, float b) {
+        float total = a / b;
+        return total;
+    }
     public static final Scanner SCANNER_INPUT = new Scanner(System.in);
 
     public static String inferredInput(String identifierName, String inputPrompt) {
@@ -54,18 +73,46 @@ public class Output {
         }
 
     public static void main(String[] args) {
-        int num1 = 10;
-        int num2 = 20;
-        int num3 = 20;
-        if (num1 == 10 && num2 == 2 || num3 == 5) {
-    System.out.println("""
-GOOD"""
+        boolean auth = true;
+        while (auth == true) {
+    float a = 0.0f;
+        a = inferredInput( a, """
+Enter 1st Number: """
 );
+    int op= 0;
+        op = inferredInput( op, """
+Enter Operator:
+1. Add
+2. Subtract	
+3. Multiply
+4. Divide
+Choice: """
+);
+    float b = 0.0f;
+        b = inferredInput( b, """
+Enter 2nd Number: """
+);
+    float result = 0;
+    switch (op) {
+    case 1 -> {
+        result = plus(a, b);
+    }
+    case 2 -> {
+        result = minus(a, b);
+    }
+    case 3 -> {
+        result = multi(a, b);
+    }
+    case 4 -> {
+        result = divi(a, b);
+    }
+    default -> {
+        System.out.println("""
+ Invalid """
+);
+    }
 }
-else {
-    System.out.println("""
-BAD"""
-);
+    System.out.println(result);
 }
     }
 }
